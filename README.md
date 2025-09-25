@@ -76,9 +76,8 @@ Instructions on how a user can get your project running on their own machine.
     uvicorn fastapi_app:app --host 127.0.0.1 --port 8000 --reload
     ```
 
-2.  **Open the application:**
+2. **Open the application:**
     Open your web browser and go to `http://127.0.0.1:8000`.
-
 ---
 
 ##  Submissions
