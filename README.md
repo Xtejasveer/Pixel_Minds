@@ -83,5 +83,5 @@ Instructions on how a user can get your project running on their own machine.
 
 ##  Submissions
 
-* **Video Demo URL:** [Link to your video demo]
+* **Video Demo URL:** (https://youtu.be/b03IsgiFPnE)
 * **Supplementary Resource URL:** [Link to any other resource]
