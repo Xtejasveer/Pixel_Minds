@@ -9,14 +9,38 @@ This project builds Dynamic,context-aware NPC Framework using Autogen
 #### Currently exisiting NPCs in Role Playing Games are Static and Hard Coded. This project uses the power of LLMs to make them Percieve, think, understand and act according to the environment and story context.
 ---
 
+---
+
 ## ✨ Features
 
-List the key features of your application.
-* **Feature 1:** Give 
-* **Feature 2:** Memory integration for context-aware dialogue.
-* **Feature 3:** Web interface built with FastAPI and vanilla JavaScript.
+### 1. 🤖 Multi-Agent Specialized Intelligence
+Four AI agents working in coordination to prevent knowledge contamination while maintaining character authenticity:
+* **🎭 NPC Agent:** Manages character personality and final dialogue.
+* **📖 Story Agent:** Provides lore and narrative context from a knowledge base.
+* **💻 CodeAnalyzer Agent:** Acts as the game world data expert, reading scripts and state files.
+* **👁️ Vision Agent:** Grants environmental awareness by describing visual scenes.
 
----
+### 2. 🎮 Structured Game-Ready Output System
+Consistent JSON formatting for seamless and direct integration with game engines and animation systems.
+
+### 3. 🌍 Dynamic Context Awareness
+Real-time environmental integration creates truly immersive, context-sensitive interactions.
+* **Visual Scene Analysis:** Interprets game screenshots to understand the immediate environment.
+* **Live Game World Data:** Reads C# scripts and JSON files for real-time world state.
+* **Persistent Story Lore:** Pulls from documents to stay consistent with the narrative.
+* **Emotional State Tracking:*** Manages and transitions between different moods based on conversation.
+
+### 4. 🧠 Persistent Memory Architecture
+A dual-layer memory system allows NPCs to remember players and previous conversations.
+* **Short-Term Memory:** Tracks the immediate conversation history within a session.
+* **Long-Term Memory:** A vector database for deep story knowledge and semantic recall.
+* **Cross-Session Persistence:** Includes functionality for automatic saving and loading of memory.
+
+### 5. 🛡️ Safety & Control Framework
+A built-in content management system ensures safe, predictable, and game-appropriate responses.
+* **Content Filtering:** Automatically filters NSFW and inappropriate user requests
+* **Ethical Guidelines:** Enforces ethical response boundaries to keep the NPC in line.
+* **Modular Capabilities:** Tool-based restrictions control what the AI can and cannot do.
 
 ## 🔧 Setup and Installation Guide
 
@@ -83,4 +107,6 @@ Instructions on how a user can get your project running on their own machine.
 ##  Submissions
 
 * **Video Demo URL:** (https://youtu.be/b03IsgiFPnE)
-* **Supplementary Resource URL:** [Link to any other resource]
+* For a detailed breakdown of our project's architecture, agent roles, and technical highlights, please see our supplementary documentation file present in the root folder.
+* The example showed in the demonstration video uses three external files, these files are also added to the root folder, use them if needed.
+* The Final PPT is also added in the root folder.
