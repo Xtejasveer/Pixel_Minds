@@ -1,0 +1,37 @@
+{
+  "location_name": "The Whispering Tavern",
+  "description": "A cozy, dimly lit tavern with the smell of old wood and spilled ale. A few patrons are scattered around, and a fire crackles in the hearth.",
+  "time_of_day": "Evening",
+  "objects": {
+    "golden_wrapper": {
+      "name": "Golden Wrapper",
+      "description": "A shiny, discarded candy wrapper lying on the dusty floorboards near the bar.",
+      "is_interactive": true,
+      "position": {
+        "x": 12.5,
+        "y": 3.2,
+        "z": 0.1
+      }
+    },
+    "wooden_mug": {
+      "name": "Wooden Mug",
+      "description": "A half-full mug of frothy ale sits abandoned on a nearby table.",
+      "is_interactive": true,
+      "position": {
+        "x": 10.8,
+        "y": 4.5,
+        "z": 1.2
+      }
+    },
+    "cash_register": {
+      "name": "Cash Register",
+      "description": "An old, ornate cash register behind the bar.",
+      "is_interactive": true,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 1.5
+      }
+    }
+  }
+}

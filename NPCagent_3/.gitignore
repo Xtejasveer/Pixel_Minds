@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv
+env
+
+# Secrets - VERY IMPORTANT
+.env
+
+# Editor-specific files
+.vscode/
+
+# macOS specific files
+.DS_Store

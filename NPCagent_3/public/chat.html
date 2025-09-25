@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D AI Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased overflow-hidden">
+    <div class="flex flex-col md:flex-row h-screen">
+        <div id="viewer-container" class="w-full md:w-2/3 h-1/2 md:h-full relative">
+            <div id="loading-screen" class="absolute inset-0 bg-gray-900 flex flex-col justify-center items-center z-20">
+                <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 animate-spin" style="border-top-color: #14b8a6;"></div>
+                <p class="text-lg">Loading 3D Assets...</p>
+                <p id="loading-status" class="text-sm text-gray-400 mt-2">Initializing...</p>
+            </div>
+            <div id="animation-buttons"></div>
+        </div>
+        <div class="w-full md:w-1/3 h-1/2 md:h-full flex flex-col bg-gray-800 border-l-2 border-gray-700">
+            <div class="p-4 border-b-2 border-gray-700 shadow-lg flex justify-between items-center">
+                <h1 id="character-title" class="text-2xl font-bold">AI Companion</h1>
+                <div class="flex items-center gap-2">
+                    <button id="tts-toggle-btn" class="p-2 text-teal-400 hover:text-teal-300 transition-colors rounded-lg" title="Toggle AI Voice">
+                        <svg id="speaker-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <svg id="speaker-off-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                    </button>
+                    <button id="terminate-btn" class="btn btn-danger" disabled>End Session</button>
+                </div>
+            </div>
+            <div id="chat-box" class="chat-box flex-1 p-4 overflow-y-auto space-y-4"></div>
+            <div id="typing-indicator" class="px-4 py-2 text-sm text-gray-400" style="display: none;">
+                <span>AI is typing...</span>
+            </div>
+            <div class="p-4 border-t-2 border-gray-700">
+                <div class="flex items-center bg-gray-700 rounded-lg p-2">
+                    <button id="stt-btn" class="p-2 text-teal-400 hover:text-teal-300 transition-colors" title="Speak to Input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                    <input type="text" id="chat-input" placeholder="Type or click the mic to speak..." class="flex-1 bg-transparent border-none focus:ring-0 text-white placeholder-gray-400" disabled>
+                    <button id="send-btn" class="ml-2 btn btn-primary" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/public/chat.js"></script>
+</body>
+</html>
+
+
