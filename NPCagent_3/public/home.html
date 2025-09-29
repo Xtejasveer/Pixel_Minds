@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelMinds - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto mt-4 px-4">
+            <div class="flex items-center justify-between px-5 py-3 rounded-2xl navbar">
+                <a href="/public/home.html" class="flex items-center gap-3">
+                    <span class="inline-flex h-10 w-10 items-center justify-center rounded-full" style="background:linear-gradient(135deg,#8fb996,#e6b8a2)">🜚</span>
+                    <span class="text-xl font-bold">PixelMinds</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-2 text-sm">
+                    <a href="/public/home.html" class="btn-primary-outline px-3 py-2 rounded-lg">Home</a>
+                    <a href="/public/form.html" class="btn btn-primary px-3 py-2 rounded-lg">Create Character</a>
+                    <a href="/public/load.html" class="btn-primary-outline px-3 py-2 rounded-lg">Load Existing</a>
+                </nav>
+                <div class="md:hidden">
+                    <a href="/public/form.html" class="btn btn-primary px-3 py-2 rounded-lg">Create</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h2 class="text-4xl font-extrabold leading-tight">Chat with a 3D AI Character</h2>
+            <p class="text-gray-300 mt-4">Spin up an AI persona, upload a C# environment, and talk in real-time with synchronized animations.</p>
+            <div class="mt-6 flex gap-3">
+                <a href="/public/form.html" class="btn btn-primary">Create Character</a>
+                <a href="/public/load.html" class="btn" style="background-color:#374151;color:#fff">Load Existing</a>
+            </div>
+        </div>
+        <div class="rounded-xl overflow-hidden border border-gray-700">
+            <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200&auto=format&fit=crop" alt="3D AI character assistant" class="w-full h-full object-cover"/>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="max-w-6xl mx-auto px-6 mt-4 grid md:grid-cols-3 gap-6">
+        <div class="card p-6 tilt-card" data-tilt>
+            <div class="tilt-layer" data-depth style="--depth: 40">
+                <div class="badge-number">1</div>
+                <h3 class="text-lg font-semibold mt-3">Create a Character</h3>
+                <p class="section-sub mt-2">Define a name, background, and behavior. Optionally upload a story and an environment file.</p>
+            </div>
+        </div>
+        <div class="card p-6 tilt-card" data-tilt>
+            <div class="tilt-layer" data-depth style="--depth: 40">
+                <div class="badge-number">2</div>
+                <h3 class="text-lg font-semibold mt-3">Upload Your World</h3>
+                <p class="section-sub mt-2">Provide a C# environment to unlock in-world actions like MOVE and INTERACT.</p>
+            </div>
+        </div>
+        <div class="card p-6 tilt-card" data-tilt>
+            <div class="tilt-layer" data-depth style="--depth: 40">
+                <div class="badge-number">3</div>
+                <h3 class="text-lg font-semibold mt-3">Chat in Real‑Time</h3>
+                <p class="section-sub mt-2">Talk naturally and watch animations sync to the dialogue for an immersive experience.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="max-w-6xl mx-auto px-6 mt-10 mb-10">
+        <div class="card p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <h3 class="text-2xl font-bold">Ready to build your first character?</h3>
+                <p class="section-sub mt-2">Start from scratch or pick an existing persona and jump straight into chat.</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="/public/form.html" class="btn btn-primary">Create Character</a>
+                <a href="/public/load.html" class="btn-primary-outline px-4 py-3 rounded-lg">Load Existing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer max-w-6xl mx-auto px-6 py-8 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="section-sub">© <span id="year"></span> PixelMinds. All rights reserved.</p>
+        <div class="flex gap-4 section-sub text-sm">
+            <a href="/public/home.html">Home</a>
+            <a href="/public/form.html">Create</a>
+            <a href="/public/load.html">Load</a>
+        </div>
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Tiny tilt effect
+            const cards = document.querySelectorAll('[data-tilt]');
+            const constrain = 8;
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const dx = (e.clientX - cx) / rect.width;
+                    const dy = (e.clientY - cy) / rect.height;
+                    card.style.transform = `rotateX(${(-dy * constrain)}deg) rotateY(${(dx * constrain)}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateX(0) rotateY(0)';
+                });
+            });
+        </script>
+    </footer>
+</body>
+</html>
+
+

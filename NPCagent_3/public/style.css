@@ -1,0 +1,331 @@
+/* ------------------------------
+   Aesthetic Light Theme Palette
+   ------------------------------ */
+:root {
+    --bg-page: #f7f5f2;          /* warm off‑white */
+    --bg-surface: #ffffff;       /* card background */
+    --bg-elevated: #faf7f3;      /* subtle elevation */
+    --text-primary: #2f2f2f;     /* deep neutral */
+    --text-muted: #6b7280;       /* muted gray */
+    --border-soft: #e7e5e4;      /* stone‑200 */
+    --primary: #8fb996;          /* soft sage */
+    --primary-700: #6aa27a;      /* darker sage */
+    --accent: #e6b8a2;           /* peach */
+    --danger: #e76f51;           /* warm terracotta */
+    --danger-700: #c85b42;
+
+    --bubble-user: #eaf3ef;      /* pale sage */
+    --bubble-bot: #fde8df;       /* pale peach */
+    --bubble-system: #efeaf6;    /* soft lavender */
+}
+
+/* Base overrides (replace the dark techy look) */
+body {
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Narrow form container utility to avoid Tailwind's .container widths */
+.form-container {
+    width: 100%;
+    max-width: 36rem; /* ~576px */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+}
+.text-white { color: var(--text-primary) !important; }
+.text-gray-300 { color: var(--text-muted) !important; }
+.text-gray-400 { color: var(--text-muted) !important; }
+
+/* Improve placeholder contrast */
+input::placeholder, textarea::placeholder {
+    color: #9aa1ab;
+}
+
+/* Override commonly used Tailwind utility backgrounds/borders in markup */
+.bg-gray-900 { background-color: var(--bg-page) !important; }
+.bg-gray-800 { background-color: var(--bg-surface) !important; }
+.bg-gray-700 { background-color: var(--bg-elevated) !important; }
+.border-gray-700 { border-color: var(--border-soft) !important; }
+.text-gray-400 { color: var(--text-muted) !important; }
+
+/* Custom scrollbar for chat */
+.chat-box::-webkit-scrollbar { width: 8px; }
+.chat-box::-webkit-scrollbar-track { background: var(--bg-elevated); }
+.chat-box::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.chat-box::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Main layout scrollbar for form */
+.overflow-y-auto::-webkit-scrollbar { width: 8px; }
+.overflow-y-auto::-webkit-scrollbar-track { background: var(--bg-elevated); }
+.overflow-y-auto::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.overflow-y-auto::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* General Form Styles */
+.form-label {
+    display: block;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-soft);
+    color: var(--text-primary);
+    border-radius: 0.5rem; /* 8px */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(143, 185, 150, 0.35);
+}
+
+/* Simplified Sidebar Item Style */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #9ca3af; /* gray-400 */
+    font-weight: 500;
+}
+.sidebar-item.active {
+    color: #f9fafb; /* gray-50 */
+}
+
+/* Tabs for Form */
+.tab-btn {
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid transparent;
+    color: #9ca3af; /* gray-400 */
+    font-weight: 500;
+    transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover {
+    color: #d1d5db; /* gray-300 */
+}
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+.tab-panel {
+    display: none;
+}
+.tab-panel.active {
+    display: block;
+}
+
+/* Custom File Input */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-elevated);
+    border: 1px dashed var(--border-soft);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.file-input-wrapper:hover {
+    border-color: var(--primary);
+    background-color: #fff;
+}
+.file-input-wrapper svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* Custom Buttons */
+.btn {
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, transform 0.1s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #0b2220;
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-700);
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: var(--text-primary);
+}
+.btn-secondary:hover:not(:disabled) {
+    background-color: #d1d5db;
+}
+
+/* Outline button matching the primary palette */
+.btn-primary-outline {
+    background-color: transparent;
+    color: var(--primary-700);
+    border: 1px solid var(--primary);
+}
+.btn-primary-outline:hover:not(:disabled) {
+    background-color: var(--primary);
+    color: #0b2220;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+.btn-danger:hover:not(:disabled) {
+    background-color: var(--danger-700);
+}
+
+/* Animation buttons on 3D viewer */
+#animation-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 10;
+}
+.animation-btn {
+    background-color: rgba(255, 255, 255, 0.65);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-soft);
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background-color 0.3s;
+}
+.animation-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Chat bubble styles decoupled from Tailwind bg classes */
+.bubble-user {
+    background: var(--bubble-user);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 12px;
+    max-width: 28rem;
+}
+.bubble-bot {
+    background: var(--bubble-bot);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 12px;
+    max-width: 28rem;
+}
+.bubble-system {
+    background: var(--bubble-system);
+    color: var(--text-muted);
+    border-radius: 9999px;
+    padding: 6px 12px;
+}
+
+/* Navbar glass style that blends with page background */
+.navbar {
+    background-color: rgba(247, 245, 242, 0.65);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(8px);
+}
+
+/* Simple card + badge styles for home sections */
+.card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+.card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+.badge-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    background: var(--bubble-user);
+    color: var(--primary-700);
+    font-weight: 700;
+}
+.section-sub {
+    color: var(--text-muted);
+}
+.footer {
+    border-top: 1px solid var(--border-soft);
+}
+
+/* 3D floating cards */
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: floatY 6s ease-in-out infinite;
+}
+.tilt-card:hover {
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+.tilt-layer[data-depth] {
+    transform: translateZ(calc(var(--depth, 40) * 1px));
+}
+@keyframes floatY {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* Load page */
+.search-wrap {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+.search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+}
+.avatar-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 16px;
+}
+.avatar-meta {
+    color: var(--text-muted);
+}

@@ -1,0 +1,7 @@
+{
+  "objects": [
+    { "Name": "front door", "IsInteractable": true, "Status": "Closed" },
+    { "Name": "cash register", "IsInteractable": true, "Status": "Idle" },
+    { "Name": "golden wrapper", "IsInteractable": false, "Status": "On floor near aisle 1" }
+  ]
+}
