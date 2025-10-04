@@ -12,7 +12,7 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, WebSocket, WebSock
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ValidationError
-
+from autogen_core import CancellationToken
 from autogen_agentchat.messages import MultiModalMessage
 from autogen_core import Image as AGImage
 from PIL import Image
@@ -201,7 +201,8 @@ async def initialize_character(init_data: CharacterInit):
                 "story": story_path,
                 "csharp": csharp_path,
                 "image": image_path,
-            }
+            },
+            "all_tools": all_tools
         }
         return {"message": f"Character '{init_data.name}' initialized.", "session_id": session_id}
     except AuthenticationError:
@@ -220,6 +221,31 @@ def extract_json_from_string(text: str) -> dict | None:
             print(f"⚠️ Failed to decode JSON from extracted string: {match.group(0)}")
             return None
     return None
+
+def debug_world_state():
+    """Debug function to check world state file"""
+    import os
+    world_state_path = "data/world_state.json"
+    print(f"🔍 Checking world state file: {world_state_path}")
+    print(f"   File exists: {os.path.exists(world_state_path)}")
+    if os.path.exists(world_state_path):
+        with open(world_state_path, "r") as f:
+            content = f.read()
+            print(f"   File content: {content}")
+    else:
+        print(f"   Creating directory structure...")
+        os.makedirs("data", exist_ok=True)
+        # Create initial world state if it doesn't exist
+        initial_state = {
+            "objects": [
+                {"Name": "front door", "IsInteractable": True, "Status": "Closed"},
+                {"Name": "cash register", "IsInteractable": True, "Status": "Idle"},
+                {"Name": "golden wrapper", "IsInteractable": False, "Status": "On floor near aisle 1"}
+            ]
+        }
+        with open(world_state_path, "w") as f:
+            json.dump(initial_state, f, indent=2)
+        print(f"   Created initial world state file")
 
 @app.websocket("/ws/{session_id}")
 async def websocket_endpoint(websocket: WebSocket, session_id: str):
@@ -344,18 +370,29 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
                                         SESSIONS[session_id]["npc_inventory"].append(item_to_pickup)
                                         print(f"✅ NPC Inventory Update: Added '{item_to_pickup}'")
                                 
+
                                 elif verb.upper() == "UPDATE_STATUS":
-                                    # Find the update_world_state tool from the agent's tool list
-                                    update_tool = next((t for t in npc_team._participants[0].tools if t.name == "update_world_state"), None)
+                                    update_tool = next((t for t in session["all_tools"] if t.name == "update_world_state"), None)
                                     if update_tool:
                                         try:
-                                            # Target for UPDATE_STATUS contains two parts: "object, new_status"
                                             obj_name, new_status = [part.strip() for part in target.split(",", 1)]
-                                            tool_result = await update_tool.call(target_object=obj_name, new_status=new_status)
-                                            print(f"✅ World State Update: {tool_result}")
+                                            
+                                            cancellation_token = CancellationToken()
+                                            
+                                            tool_result = await update_tool.run_json(
+                                                {"target_object": obj_name, "new_status": new_status}, 
+                                                cancellation_token
+                                            )
+                                            
+                                            print(f"✅ World State Update: {update_tool.return_value_as_string(tool_result)}")
+                                            
                                         except Exception as tool_e:
-                                            print(f"⚠️ Error parsing or calling update_world_state tool: {tool_e}")
-                        
+                                            print(f"⚠️ Error calling update_world_state tool: {tool_e}")
+                                    else:
+                                        print(f"⚠️ update_world_state tool not found in session tools")
+
+
+
                         except ValidationError as e:
                             print(f"⚠️ VALIDATION ERROR: AI response did not match NPCResponse model.\n{e}")
                             await websocket.send_text(json.dumps({
@@ -430,6 +467,10 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
         if not websocket.client_state.name == 'DISCONNECTED':
             await websocket.close()
         print("INFO:     Connection closed")
+
+@app.on_event("startup")
+async def startup_event():
+    debug_world_state()
 
 app.mount("/public", StaticFiles(directory="public"), name="public_assets")
 

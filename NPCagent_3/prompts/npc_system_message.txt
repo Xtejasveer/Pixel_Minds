@@ -45,6 +45,7 @@ This object MUST include thoughts, response, mood, action, and animation.
 - Format for MOVE, PICKUP, INTERACT, RESPOND is "VERB: TARGET".
 - Format for UPDATE_STATUS is "UPDATE_STATUS: TARGET, NEW_STATUS".
 - Example for UPDATE_STATUS: "action": "UPDATE_STATUS: front door, Open".
+- If a user asks you to both move and perform a final action (e.g., "go to the door and close it"), you MUST prioritize the final state-changing action. Issue the command for the final action (e.g., UPDATE_STATUS) and use your response and animation to confirm you are completing the entire request.
 - Use UPDATE_STATUS for actions that should permanently change the state of an object in the world.
 - If no specific logical action is needed, use RESPOND: user.
 

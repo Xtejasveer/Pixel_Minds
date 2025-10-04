@@ -17,6 +17,11 @@ def get_tools(
 ) -> list[FunctionTool]:
     """
     Creates and returns a list of all FunctionTool objects.
+
+    DATA SOURCES STRATEGY:
+    - Objects: ONLY from world_state.json (dynamic, mutable)
+    - Characters: ONLY from C# file (static, immutable) 
+    - Layout/State: FROM C# file (static configuration)
     """
 
     # --- Tool Logic ---
@@ -162,7 +167,6 @@ def get_tools(
         name="update_world_state",
         description="Permanently updates the status of an interactable object in the game world."
     )
-    # CORRECTED: Renamed the tool to match the system prompt's instruction.
     code_analyzer_tool = FunctionTool(
         analyze_csharp_file,
         name="get_environment_data",
