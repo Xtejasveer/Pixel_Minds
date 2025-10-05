@@ -23,10 +23,10 @@ def get_api_key() -> str:
 def get_model_client(api_key: str) -> OpenAIChatCompletionClient:
     return OpenAIChatCompletionClient(
         base_url="https://openrouter.ai/api/v1",
-        model="x-ai/grok-4-fast:free",
+        model="meta-llama/llama-4-maverick:free",
         api_key=api_key,
         model_info={
-            "family": "x-ai",
+            "family": "meta-llama",
             "vision": True,
             "function_calling": True,
             "json_output": True,

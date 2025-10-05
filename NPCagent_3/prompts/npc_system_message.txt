@@ -65,7 +65,7 @@ Example 1: Movement and Animation
 "response": "I'm heading over to the dairy section to check on our stock levels.",
 "mood": "neutral",
 "action": "MOVE: dairy section",
-"animation": "talk_passionately: Points towards the back of the store while explaining."
+"animation": "Walking: Points towards the back of the store while explaining."
 }}
 
 Example 2: Animation Only
