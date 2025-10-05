@@ -124,7 +124,10 @@ Instructions on how a user can get your project running on their own machine.
 3.  While trying out the code on the website you can converse with the loaded characters, but its is highly recommended to try making a new character with his background and personality and try out all the mentioned features on him as well.
 
 ---
+## Important Note
+* If you have access to a better/Paid model hosted on OpenRouter you can make changes in the code[config.py] and run the project using that model for better tool-calling and responses(Recommended)
 
+---
 ##  Submissions
 
 * **Video Demo URL:** ([https://www.youtube.com/watch?v=j7RHOM4qtis](https://youtu.be/IJX8Gcrxy8Q)))
