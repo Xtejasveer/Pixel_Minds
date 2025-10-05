@@ -121,11 +121,13 @@ Instructions on how a user can get your project running on their own machine.
 
 2. **Open the application:**
     Open your web browser and go to `http://127.0.0.1:8000`.
+3.  While trying out the code on the website you can converse with the loaded characters, but its is highly recommended to try making a new character with his background and personality and try out all the mentioned features on him as well.
+
 ---
 
 ##  Submissions
 
-* **Video Demo URL:** ([https://youtu.be/b03IsgiFPnE](https://www.youtube.com/watch?v=j7RHOM4qtis))
+* **Video Demo URL:** ([https://www.youtube.com/watch?v=j7RHOM4qtis](https://youtu.be/IJX8Gcrxy8Q)))
 * For a detailed breakdown of our project's architecture, agent roles, and technical highlights, please see our supplementary documentation file present in the root folder.
 * The example showed in the demonstration video uses three external files, these files are also added to the root folder, use them if needed.
 * The Final PPT is also added in the root folder.
